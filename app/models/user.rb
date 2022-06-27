@@ -3,9 +3,9 @@ class User < ApplicationRecord
          :recoverable, :rememberable, :validatable
 
   validates :password,
-            format: { with: /\A(?=.*?[a-z])(?=.*?\d)[a-z\d]{6,100}+\z/i, message: 'should contain both letters and numbers' }
+            format: { with: /\A(?=.*?[a-z])(?=.*?\d)[a-z\d]+\z/i, message: 'should contain both letters and numbers' }
   validates :name, presence: true
-  with_options presence: true, format: { with: /\A[ぁ-んァ-ン一-龥]+\z/, message: 'should contain only full-width characters' } do
+  with_options presence: true, format: { with: /\A[ぁ-んァ-ヶ一-龥々ー]+\z/, message: 'should contain only full-width characters' } do
     validates :last_name_kanji
     validates :first_name_kanji
   end

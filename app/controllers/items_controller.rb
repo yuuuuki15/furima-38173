@@ -5,9 +5,11 @@ class ItemsController < ApplicationController
   end
 
   def new
+    @user = User.new
   end
 
   def create(items_parameter)
+    
   end
 
   private

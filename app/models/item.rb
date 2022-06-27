@@ -9,6 +9,6 @@ class Item < ApplicationRecord
   validates :fee_id, presence: true
   validates :prefecture_id, presence: true
   validates :delivery_date_id, presence: true
-  validates :price, presence: true
+  validates :price, presence: true, numericality: { greater_than_or_equal_to: 300, less_than_or_equal_to: 9999999 }
   validates :user, presence: true, foreign_key: true
 end

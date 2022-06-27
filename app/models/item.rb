@@ -18,7 +18,7 @@ class Item < ApplicationRecord
     validates :prefecture_id
     validates :delivery_date_id
   end
-  validates :price, presence: true, numericality: { greater_than_or_equal_to: 300, less_than_or_equal_to: 9_999_999 },
-                    format: { with: /\A[0-9]+\z/ }
+  validates :price, presence: true, numericality: { greater_than_or_equal_to: 300, less_than_or_equal_to: 9_999_999,allow_blank: true },
+                    format: { with: /\A[0-9]+\z/, allow_blank: true }
   validates :user, presence: true
 end

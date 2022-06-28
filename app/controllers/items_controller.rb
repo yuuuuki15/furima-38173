@@ -44,8 +44,6 @@ class ItemsController < ApplicationController
   end
 
   def redirect_to_index
-    if current_user != Item.find(params[:id]).user
-      redirect_to root_path
-    end
+    redirect_to root_path if current_user != Item.find(params[:id]).user
   end
 end

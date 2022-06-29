@@ -13,7 +13,7 @@ before_action :check_if_item_is_sold, only: [:index, :create]
     @item = Item.find(params[:item_id])
     @order_address = OrderAddress.new(order_params)
     if @order_address.valid?
-      # pay_item
+      pay_item
       @order_address.save
       return redirect_to root_path
     else
@@ -29,7 +29,7 @@ before_action :check_if_item_is_sold, only: [:index, :create]
   def pay_item
     Payjp.api_key = ENV["PAYJP_SECRET_KEY"]
     Payjp::Charge.create(
-      amount: order_params[:price],
+      amount: @item.price,
       card: order_params[:token],
       currency: 'jpy'
     )

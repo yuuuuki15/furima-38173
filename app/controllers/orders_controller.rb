@@ -5,11 +5,10 @@ class OrdersController < ApplicationController
   end
 
   def create
-    binding.pry
-    @order = Order.new(order_params)
-    if @order.valid?
+    @order_address = OrderAddress.new(order_params)
+    if @order_address.valid?
       pay_item
-      @order.save
+      @order_address.save
       return redirect_to root_path
     else
       render :index
@@ -18,7 +17,7 @@ class OrdersController < ApplicationController
 
   private
   def order_params
-    params.require()
+    params.require(:donation_address).permit(:postal_code, :prefecture, :city, :house_number, :building_name).merge(user_id: current_user.id, item_id: params[:item_id])
   end
 
   def pay_item

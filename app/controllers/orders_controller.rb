@@ -1,6 +1,7 @@
 class OrdersController < ApplicationController
 before_action :authenticate_user!, only: [:index, :create]
 before_action :redirect_to_root, only: [:index, :create]
+before_action :check_if_item_is_sold, only: [:index, :create]
 
   def index
     @order_address = OrderAddress.new
@@ -36,5 +37,9 @@ before_action :redirect_to_root, only: [:index, :create]
 
   def redirect_to_root
     redirect_to root_path if current_user == Item.find(params[:item_id]).user
+  end
+
+  def check_if_item_is_sold
+    redirect_to root_path unless Item.find(params[:item_id]).order == nil
   end
 end

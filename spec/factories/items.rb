@@ -1,6 +1,5 @@
 FactoryBot.define do
   factory :item do
-    # category_idは1以外の数字を指定する
     name { Faker::Lorem.sentence }
     description { Faker::Lorem.sentence }
     category_id { 2 }

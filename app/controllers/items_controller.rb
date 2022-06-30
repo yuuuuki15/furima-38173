@@ -59,6 +59,6 @@ class ItemsController < ApplicationController
   end
 
   def check_if_item_is_sold
-    redirect_to root_path unless @item.order == nil
+    redirect_to root_path unless @item.order.nil?
   end
 end
